@@ -1,0 +1,7 @@
+.glass-input::placeholder {
+  color: rgba(30, 70, 30, 0.5);
+  font-weight: 500;
+}
+.glass-input:focus::placeholder {
+  color: rgba(30, 70, 30, 0.35);
+}

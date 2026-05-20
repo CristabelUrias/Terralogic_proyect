@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+        - name: backend
+
+          image: terralogic-backend:latest
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8000
+
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://postgres:05072001@host.docker.internal:5432/terralogic"
+
+            - name: JWT_SECRET_KEY
+              value: "terra_logic_3e94bb706b4c165eba0e589f0c7748ee28b0c673"
+
+            - name: JWT_ALGORITHM
+              value: "HS256"
+
+            - name: JWT_ACCESS_TOKEN_EXPIRE_MINUTES
+              value: "60"
+
+            - name: ALLOWED_ORIGINS
+              value: "http://localhost"
+
+            - name: GEMINI_API_KEY
+              value: "AIzaSyCx08O1KgxF5hmSLlwHWPpjyZS3H8rjfJU"
+
+            - name: GMAIL_USER
+              value: "TerraLogicSV@gmail.com"
+
+            - name: GMAIL_PASSWORD
+              value: "TU_PASSWORD"
